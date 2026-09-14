@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Project — Your Name</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<main>
+  <div class="wrap case-hero">
+    <a href="projects.html" class="mono-tag" style="display:inline-block; margin-bottom:24px;">&#8592; All projects</a>
+    <div class="case-hero__grid">
+      <div>
+        <span class="eyebrow" id="caseDiscipline">Discipline</span>
+        <h1 id="caseTitle" style="margin-top:14px;">Project title</h1>
+      </div>
+      <div class="project-card__software" id="caseSoftware" style="margin-bottom:6px;"></div>
+    </div>
+
+    <div class="case-figure tick-frame" id="caseHeroFigure"></div>
+    <p class="case-figure-cap">Overview render — replace with a photo or render of the finished part or assembly.</p>
+
+    <div class="case-meta-strip">
+      <div>
+        <span class="mono-tag">Discipline</span>
+        <span id="metaDiscipline"></span>
+      </div>
+      <div>
+        <span class="mono-tag">Software used</span>
+        <span id="metaSoftware"></span>
+      </div>
+      <div>
+        <span class="mono-tag">Key challenge</span>
+        <span id="metaChallenge"></span>
+      </div>
+      <div>
+        <span class="mono-tag">Outcome</span>
+        <span id="metaOutcome"></span>
+      </div>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+
+      <div class="case-body reveal">
+        <h3>Overview</h3>
+        <p id="caseSummary"></p>
+      </div>
+
+      <div class="case-body reveal">
+        <h3>Challenge</h3>
+        <p id="caseChallenge"></p>
+      </div>
+
+      <div class="case-body reveal">
+        <h3>Engineering approach</h3>
+        <p id="caseApproach"></p>
+      </div>
+
+      <hr class="rule" style="margin-bottom:56px;">
+
+      <div class="section-head">
+        <span class="eyebrow">01</span>
+        <h2>CAD development</h2>
+      </div>
+      <div class="case-two-col reveal">
+        <div class="case-figure" id="cadFigureA"></div>
+        <div class="case-figure" id="cadFigureB"></div>
+      </div>
+      <p class="case-figure-cap" id="caseCadNote"></p>
+
+      <hr class="rule" style="margin: 56px 0;">
+
+      <div class="section-head">
+        <span class="eyebrow">02</span>
+        <h2>Simulation &amp; analysis</h2>
+      </div>
+      <div class="case-two-col reveal">
+        <div class="case-figure" id="simFigureA"></div>
+        <div class="case-figure" id="simFigureB"></div>
+      </div>
+      <p class="case-figure-cap" id="caseSimNote"></p>
+
+      <hr class="rule" style="margin: 56px 0;">
+
+      <div class="section-head">
+        <span class="eyebrow">03</span>
+        <h2>Final design</h2>
+      </div>
+      <div class="case-figure reveal" id="finalFigure"></div>
+      <p class="case-figure-cap">Validated final geometry, ready for manufacturing documentation.</p>
+
+      <div class="section-head" style="margin-top:40px;">
+        <span class="eyebrow">Results</span>
+        <h2>Outcome</h2>
+      </div>
+      <div class="results-strip reveal" id="resultsStrip"></div>
+
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px; border-top:1px solid var(--gray-light); padding-top:40px;">
+      <div>
+        <span class="mono-tag">Next</span>
+        <h3 id="nextTitle" style="margin-top:8px;"></h3>
+      </div>
+      <a class="btn btn--ghost" id="nextLink" href="projects.html">Next project &#8594;</a>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="js/technical-art.js"></script>
+<script src="js/projects-data.js"></script>
+<script src="js/main.js"></script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+  const project = PROJECTS.find(p => p.id === id) || PROJECTS[0];
+  const idx = PROJECTS.indexOf(project);
+  const next = PROJECTS[(idx + 1) % PROJECTS.length];
+
+  document.getElementById("pageTitle").textContent = `${project.title} — Your Name`;
+  document.getElementById("caseDiscipline").textContent = project.discipline;
+  document.getElementById("caseTitle").textContent = project.title;
+  document.getElementById("caseSoftware").innerHTML = project.software.map(s => `<span class="chip">${s}</span>`).join("");
+  document.getElementById("caseHeroFigure").innerHTML = ART.thumb(project.thumb);
+
+  document.getElementById("metaDiscipline").textContent = project.discipline;
+  document.getElementById("metaSoftware").textContent = project.software.join(", ");
+  document.getElementById("metaChallenge").textContent = project.summary;
+  document.getElementById("metaOutcome").textContent = project.resultStats[0].value + " " + project.resultStats[0].label;
+
+  document.getElementById("caseSummary").textContent = project.summary;
+  document.getElementById("caseChallenge").textContent = project.challenge;
+  document.getElementById("caseApproach").textContent = project.approach;
+
+  const g = project.gallery;
+  document.getElementById("cadFigureA").innerHTML = ART.thumb(g[1] || "iso");
+  document.getElementById("cadFigureB").innerHTML = ART.thumb(g[2] || "exploded");
+  document.getElementById("caseCadNote").textContent = project.cad;
+
+  document.getElementById("simFigureA").innerHTML = ART.thumb(g[3] || "mesh");
+  document.getElementById("simFigureB").innerHTML = ART.thumb(g[3] === "stress" ? "thermal" : "stress");
+  document.getElementById("caseSimNote").textContent = project.sim;
+
+  document.getElementById("finalFigure").innerHTML = ART.finalRender();
+
+  document.getElementById("resultsStrip").innerHTML = project.resultStats.map(r => `
+    <div class="result-cell">
+      <strong>${r.value}</strong>
+      <span>${r.label}</span>
+    </div>
+  `).join("");
+
+  document.getElementById("nextTitle").textContent = next.title;
+  document.getElementById("nextLink").href = `project.html?id=${next.id}`;
+
+  initReveal();
+</script>
+</body>
+</html>

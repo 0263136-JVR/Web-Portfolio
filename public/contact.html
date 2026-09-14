@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Your Name</title>
+<meta name="description" content="Get in touch about engineering, CAD, or simulation work.">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<main>
+  <div class="wrap page-title-block">
+    <span class="eyebrow">Contact</span>
+    <h1>Let's build something<br>engineered to perform.</h1>
+  </div>
+
+  <section class="section section--tight">
+    <div class="wrap contact-layout">
+
+      <div>
+        <p class="lede">
+          Open to mechanical design, CAD, and simulation work — from single-part
+          consulting to full product development. The fastest way to reach me is email.
+        </p>
+        <ul class="contact-list">
+          <li>
+            <span class="mono-tag">Email</span>
+            <a href="mailto:yourname@gmail.com">yourname@gmail.com</a>
+          </li>
+          <li>
+            <span class="mono-tag">LinkedIn</span>
+            <a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener">linkedin.com/in/your-profile</a>
+          </li>
+          <li>
+            <span class="mono-tag">Instagram</span>
+            <a href="https://www.instagram.com/your-handle" target="_blank" rel="noopener">@your-handle</a>
+          </li>
+          <li>
+            <span class="mono-tag">Location</span>
+            <span>Your City, Country</span>
+          </li>
+        </ul>
+        <p class="muted" style="margin-top:24px; font-size:0.88rem;">
+          Update the links above in <code>js/main.js</code> (the <code>SITE</code> object) and here in <code>contact.html</code> — they're kept in sync from one place.
+        </p>
+      </div>
+
+      <div>
+        <form id="contactForm">
+          <div class="field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="field">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" required>
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary">Send Message</button>
+          <p class="form-note muted" id="formNote"></p>
+        </form>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="js/technical-art.js"></script>
+<script src="js/projects-data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

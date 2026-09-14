@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Name — Mechanical Engineer & 3D CAD Designer</title>
+<meta name="description" content="Portfolio of a mechanical engineer specializing in 3D CAD design, product development, and engineering simulation.">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div>
+        <span class="eyebrow hero__eyebrow">Mechanical Engineering — CAD &amp; Simulation</span>
+        <h1 class="hero__title">Mechanical Engineer<br>&amp; 3D&nbsp;CAD Designer</h1>
+        <p class="lede">Engineering ideas into precise, manufacturable solutions through 3D CAD, simulation, and mechanical design.</p>
+        <div class="hero__actions">
+          <a href="projects.html" class="btn btn--primary">View Projects</a>
+          <a href="assets/resume-placeholder.pdf" class="btn btn--ghost" download>Download Resume</a>
+        </div>
+        <div class="hero__meta">
+          <div>
+            <span class="mono-tag">Focus</span>
+            Product development
+          </div>
+          <div>
+            <span class="mono-tag">Tools</span>
+            SolidWorks · ANSYS
+          </div>
+          <div>
+            <span class="mono-tag">Based in</span>
+            Your City
+          </div>
+        </div>
+      </div>
+      <div class="hero__visual tick-frame" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ============ ABOUT PREVIEW ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">About</span>
+          <h2>Grounded in mechanics,<br>built for manufacturability.</h2>
+        </div>
+        <a href="about.html" class="btn btn--ghost btn--sm">Full profile</a>
+      </div>
+      <div class="card-grid reveal">
+        <div class="expertise-card">
+          <span class="mono-tag">01 — Design</span>
+          <h3>3D CAD Design</h3>
+          <ul>
+            <li>Part &amp; assembly modeling</li>
+            <li>Parametric design</li>
+            <li>Mechanical components</li>
+            <li>Product development</li>
+          </ul>
+        </div>
+        <div class="expertise-card">
+          <span class="mono-tag">02 — Validate</span>
+          <h3>Simulation</h3>
+          <ul>
+            <li>Finite Element Analysis</li>
+            <li>Structural analysis</li>
+            <li>Thermal analysis</li>
+            <li>Design validation</li>
+          </ul>
+        </div>
+        <div class="expertise-card">
+          <span class="mono-tag">03 — Deliver</span>
+          <h3>Engineering</h3>
+          <ul>
+            <li>Design for manufacturing</li>
+            <li>Prototyping</li>
+            <li>Technical documentation</li>
+            <li>Engineering problem solving</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ============ FEATURED PROJECTS ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Selected Work</span>
+          <h2>Featured projects</h2>
+        </div>
+        <a href="projects.html" class="btn btn--ghost btn--sm">All projects</a>
+      </div>
+      <div class="project-grid" id="featuredProjects"></div>
+    </div>
+  </section>
+
+  <!-- ============ PROCESS ============ -->
+  <section class="section section--dark">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow" style="color:#8FD6BB">Approach</span>
+          <h2>How a project moves from brief to delivered design</h2>
+        </div>
+      </div>
+      <div class="process-list">
+        <div class="process-item reveal">
+          <span class="process-item__num">01</span>
+          <h3>Define</h3>
+          <p class="process-item__desc">Understand requirements, constraints, and how the part or product will actually be used.</p>
+        </div>
+        <div class="process-item reveal">
+          <span class="process-item__num">02</span>
+          <h3>Concept</h3>
+          <p class="process-item__desc">Develop and evaluate multiple design concepts before committing to a direction.</p>
+        </div>
+        <div class="process-item reveal">
+          <span class="process-item__num">03</span>
+          <h3>Design</h3>
+          <p class="process-item__desc">Create detailed, parametric 3D CAD models and assemblies.</p>
+        </div>
+        <div class="process-item reveal">
+          <span class="process-item__num">04</span>
+          <h3>Simulate</h3>
+          <p class="process-item__desc">Validate designs through structural, thermal, or motion analysis before committing to hardware.</p>
+        </div>
+        <div class="process-item reveal">
+          <span class="process-item__num">05</span>
+          <h3>Optimize</h3>
+          <p class="process-item__desc">Improve performance, weight, manufacturability, and cost based on simulation results.</p>
+        </div>
+        <div class="process-item reveal">
+          <span class="process-item__num">06</span>
+          <h3>Deliver</h3>
+          <p class="process-item__desc">Produce final engineering documentation and manufacturing-ready designs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="section section--tight">
+    <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:24px;">
+      <h2 style="max-width:20ch;">Let's build something engineered to perform.</h2>
+      <a href="contact.html" class="btn btn--primary">Contact me</a>
+    </div>
+  </section>
+
+</main>
+
+<div id="site-footer"></div>
+
+<script src="js/technical-art.js"></script>
+<script src="js/projects-data.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.querySelector(".hero__visual").innerHTML = ART.isoAssembly();
+
+  const featured = PROJECTS.slice(0, 4);
+  document.getElementById("featuredProjects").innerHTML = featured.map(p => `
+    <a class="project-card reveal" href="project.html?id=${p.id}">
+      <div class="project-card__frame">
+        <span class="project-card__discipline">${p.discipline}</span>
+        ${ART.thumb(p.thumb)}
+      </div>
+      <div class="project-card__body">
+        <div class="project-card__row">
+          <h3>${p.title}</h3>
+          <span class="project-card__arrow">&#8594;</span>
+        </div>
+        <p class="project-card__desc">${p.summary}</p>
+        <div class="project-card__software">
+          ${p.software.map(s => `<span class="chip">${s}</span>`).join("")}
+        </div>
+      </div>
+    </a>
+  `).join("");
+  initReveal();
+</script>
+</body>
+</html>

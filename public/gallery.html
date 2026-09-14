@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAD & Simulation Gallery — Your Name</title>
+<meta name="description" content="A browsable gallery of CAD models, assemblies, simulation plots, and technical drawings.">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<main>
+  <div class="wrap page-title-block">
+    <span class="eyebrow">Visual Library</span>
+    <h1>CAD &amp; simulation gallery</h1>
+    <p class="lede" style="margin-top:18px;">Models, assemblies, simulation plots, and technical drawings pulled from across projects. Select any image for a closer look.</p>
+  </div>
+
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="masonry" id="masonryGrid"></div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox__close">Close &#10005;</button>
+  <div class="lightbox__inner">
+    <div class="lightbox__frame"></div>
+    <div class="lightbox__meta">
+      <h3 data-lb-title></h3>
+      <p data-lb-desc></p>
+      <p class="mono-tag" style="margin-top:10px;">
+        <span data-lb-discipline></span> &nbsp;·&nbsp; <span data-lb-software></span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<script src="js/technical-art.js"></script>
+<script src="js/projects-data.js"></script>
+<script src="js/main.js"></script>
+<script>
+  /* Build one gallery entry per (project, art-kind) pair. */
+  const galleryItems = [];
+  PROJECTS.forEach(p => {
+    p.gallery.forEach(kind => {
+      galleryItems.push({
+        art: ART.thumb(kind),
+        title: p.title,
+        description: p.summary,
+        discipline: p.discipline,
+        software: p.software.join(", "),
+        kind
+      });
+    });
+  });
+
+  const kindLabel = {
+    iso: "CAD Model", mesh: "Mesh", stress: "Stress Plot",
+    thermal: "Thermal Plot", exploded: "Exploded View",
+    ortho: "Technical Drawing", render: "Final Render"
+  };
+
+  document.getElementById("masonryGrid").innerHTML = galleryItems.map((item, i) => `
+    <div class="masonry-item reveal" data-lightbox-index="${i}">
+      ${item.art}
+      <div class="masonry-item__cap">
+        <span class="mono-tag">${kindLabel[item.kind] || "Figure"}</span>
+        <span style="font-size:0.88rem;">${item.title}</span>
+      </div>
+    </div>
+  `).join("");
+
+  initReveal();
+  initLightbox(galleryItems);
+</script>
+</body>
+</html>

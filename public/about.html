@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Your Name</title>
+<meta name="description" content="Engineering profile, philosophy, and areas of expertise.">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<main>
+  <div class="wrap page-title-block">
+    <span class="eyebrow">About</span>
+    <h1>Engineering profile</h1>
+  </div>
+
+  <section class="section section--tight">
+    <div class="wrap about-grid">
+      <div class="about-figure tick-frame" id="aboutFigure"></div>
+      <div>
+        <p class="lede" style="max-width:60ch; font-size:1.2rem;">
+          I'm a mechanical engineer who works at the intersection of 3D CAD design, product development,
+          and engineering simulation — turning early ideas into geometry that can actually be built, tested, and trusted.
+        </p>
+
+        <p style="margin-top:24px; color:var(--charcoal); max-width:62ch;">
+          My work usually starts with a constraint — a load case, an assembly interface, a manufacturing
+          process — and ends with a model that has been checked against it, not just designed to look right.
+          I'm most interested in the middle part of that process: the iteration between modeling a part,
+          simulating how it behaves, and adjusting the design based on what the simulation actually shows.
+        </p>
+        <p style="margin-top:14px; color:var(--charcoal); max-width:62ch;">
+          I care about documentation and traceability as much as the model itself — a good CAD file
+          should tell the next engineer why a decision was made, not just what the final geometry is.
+        </p>
+
+        <blockquote class="philosophy-quote">
+          Good design isn't the model that looks finished — it's the one that survives contact
+          with a load case, a tolerance stack, and a manufacturing process.
+        </blockquote>
+
+        <h3 style="margin-bottom:18px;">Areas of expertise</h3>
+        <div class="card-grid" style="margin-bottom:56px;">
+          <div class="expertise-card">
+            <span class="mono-tag">CAD</span>
+            <h3>3D CAD Design</h3>
+            <ul>
+              <li>Part modeling</li>
+              <li>Assembly design</li>
+              <li>Parametric modeling</li>
+              <li>Mechanical components</li>
+              <li>Product development</li>
+            </ul>
+          </div>
+          <div class="expertise-card">
+            <span class="mono-tag">CAE</span>
+            <h3>Simulation</h3>
+            <ul>
+              <li>Finite Element Analysis</li>
+              <li>Structural analysis</li>
+              <li>Thermal analysis</li>
+              <li>Motion analysis</li>
+              <li>Design validation</li>
+            </ul>
+          </div>
+          <div class="expertise-card">
+            <span class="mono-tag">ENG</span>
+            <h3>Engineering</h3>
+            <ul>
+              <li>Mechanical design</li>
+              <li>Design for manufacturing</li>
+              <li>Prototyping</li>
+              <li>Engineering problem solving</li>
+              <li>Technical documentation</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3 style="margin-bottom:8px;">Skills &amp; software</h3>
+        <p class="muted" style="margin-bottom:28px; max-width:56ch;">
+          Grouped by category rather than rated by number — edit
+          <code>skillLevel()</code> in the script at the bottom of this page
+          to adjust the fill on each indicator, and only list tools you
+          actually use.
+        </p>
+        <div class="skills-groups">
+          <div class="skills-group">
+            <h3>CAD</h3>
+            <div id="skillsCad"></div>
+          </div>
+          <div class="skills-group">
+            <h3>Simulation</h3>
+            <div id="skillsSim"></div>
+          </div>
+          <div class="skills-group">
+            <h3>Engineering</h3>
+            <div id="skillsEng"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="js/technical-art.js"></script>
+<script src="js/projects-data.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.getElementById("aboutFigure").innerHTML = ART.orthoDrawing();
+
+  /* Edit this object to change what's listed under Skills & software.
+     level is 1–4 and controls how many of the 4 dots are filled. */
+  const SKILLS = {
+    cad: [
+      { name: "SolidWorks", level: 4 },
+      { name: "Fusion 360", level: 3 },
+      { name: "AutoCAD", level: 2 }
+    ],
+    sim: [
+      { name: "SolidWorks Simulation", level: 3 },
+      { name: "ANSYS", level: 3 }
+    ],
+    eng: [
+      { name: "Mechanical Design", level: 4 },
+      { name: "Design for Manufacturing", level: 3 },
+      { name: "Technical Documentation", level: 4 },
+      { name: "Prototyping", level: 3 }
+    ]
+  };
+
+  function renderSkillGroup(mountId, items){
+    document.getElementById(mountId).innerHTML = items.map(item => `
+      <div class="skill-row">
+        <span class="skill-row__name">${item.name}</span>
+        <span class="skill-dots">
+          ${[1,2,3,4].map(i => `<span class="${i <= item.level ? "is-filled" : ""}"></span>`).join("")}
+        </span>
+      </div>
+    `).join("");
+  }
+  renderSkillGroup("skillsCad", SKILLS.cad);
+  renderSkillGroup("skillsSim", SKILLS.sim);
+  renderSkillGroup("skillsEng", SKILLS.eng);
+</script>
+</body>
+</html>

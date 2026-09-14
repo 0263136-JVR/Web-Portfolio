@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — Your Name</title>
+<meta name="description" content="Engineering case studies in 3D CAD design, structural and thermal simulation, and product development.">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<main>
+  <div class="wrap page-title-block">
+    <span class="eyebrow">Selected Work</span>
+    <h1>Projects</h1>
+    <p class="lede" style="margin-top:18px;">CAD design and simulation case studies, from early concept through validated, manufacturable geometry.</p>
+    <div class="pill-nav" id="filterPills" style="margin-top:28px;"></div>
+  </div>
+
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="project-grid" id="allProjects"></div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="js/technical-art.js"></script>
+<script src="js/projects-data.js"></script>
+<script src="js/main.js"></script>
+<script>
+  const disciplines = ["All", ...new Set(PROJECTS.map(p => p.discipline))];
+  const pillsEl = document.getElementById("filterPills");
+  const gridEl = document.getElementById("allProjects");
+
+  function cardHTML(p){
+    return `
+      <a class="project-card reveal" href="project.html?id=${p.id}">
+        <div class="project-card__frame">
+          <span class="project-card__discipline">${p.discipline}</span>
+          ${ART.thumb(p.thumb)}
+        </div>
+        <div class="project-card__body">
+          <div class="project-card__row">
+            <h3>${p.title}</h3>
+            <span class="project-card__arrow">&#8594;</span>
+          </div>
+          <p class="project-card__desc">${p.summary}</p>
+          <div class="project-card__software">
+            ${p.software.map(s => `<span class="chip">${s}</span>`).join("")}
+          </div>
+        </div>
+      </a>`;
+  }
+
+  function renderGrid(filter){
+    const list = filter === "All" ? PROJECTS : PROJECTS.filter(p => p.discipline === filter);
+    gridEl.innerHTML = list.map(cardHTML).join("");
+    initReveal();
+  }
+
+  pillsEl.innerHTML = disciplines.map((d,i) => `<button type="button" class="${i===0?"is-active":""}" data-filter="${d}">${d}</button>`).join("");
+  pillsEl.querySelectorAll("button").forEach(btn => {
+    btn.addEventListener("click", () => {
+      pillsEl.querySelectorAll("button").forEach(b => b.classList.remove("is-active"));
+      btn.classList.add("is-active");
+      renderGrid(btn.getAttribute("data-filter"));
+    });
+  });
+
+  renderGrid("All");
+</script>
+</body>
+</html>
