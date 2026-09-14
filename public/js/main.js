@@ -5,13 +5,13 @@
    ========================================================================== */
 
 const SITE = {
-  name: "Your Name",
-  initials: "YN",
-  role: "Mechanical Engineer & 3D CAD Designer",
-  email: "yourname@gmail.com",
-  linkedin: "https://www.linkedin.com/in/your-profile",
+  name: "Jaime Valencia",
+  initials: "JV",
+  role: "Mechatronical Engineer & 3D CAD Designer",
+  email: "vrjaime05@gmail.com",
+  linkedin: "https://www.linkedin.com/in/jaime-valencia-n11d23a05/",
   instagram: "https://www.instagram.com/your-handle",
-  location: "City, Country",
+  location: "Zapopan, Mexico",
   nav: [
     { label: "Home", href: "index.html" },
     { label: "About", href: "about.html" },
